@@ -8,11 +8,14 @@ import {DelayedTransportEpics} from "./delayed-transport.epics";
 import {DelayedTransportListComponent} from "./delayed-transport-list/delayed-transport-list.component";
 import {DelayedTransportService} from "./delayed-transport.service";
 import {DelayedTransportActions} from "./delayed-transport.actions";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
-    DelayedTransportAddModule
+    DelayedTransportAddModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers:
     [DelayedTransportService,

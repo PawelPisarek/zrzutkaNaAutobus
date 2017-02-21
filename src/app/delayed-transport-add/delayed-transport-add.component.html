@@ -1,1 +1,8 @@
-
+<form [formGroup]="loginForm" (ngSubmit)="createTransport($event.value)">
+  <input formControlName="nameTrain" type="text" placeholder="Your nameTrain">
+  <input formControlName="from" type="text" placeholder="from">
+  <input formControlName="alternative" type="text" placeholder="to">
+  <input formControlName="lat" type="text" placeholder="lat">
+  <input formControlName="lng" type="text" placeholder="lng">
+  <button type="submit">Log in</button>
+</form>

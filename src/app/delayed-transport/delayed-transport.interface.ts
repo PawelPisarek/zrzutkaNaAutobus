@@ -1,7 +1,15 @@
 /**
  * Created by pawe on 2/21/17.
  */
-export class DelayedTransport {
+export interface DelayedTransport {
+  nameTrain: string
+  alternative: string
+}
+export class DelayedTransportModel implements DelayedTransport{
   constructor(public nameTrain: string,
-              public alternative: string){}
+              public from: string,
+              public alternative: string,
+              public lat: string,
+              public lng: string) {
+  }
 }

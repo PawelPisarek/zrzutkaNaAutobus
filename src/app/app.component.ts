@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { NgRedux, DevToolsExtension } from '@angular-redux/store';
-import { NgReduxRouter, routerReducer } from '@angular-redux/router';
-import { provideReduxForms, composeReducers, defaultFormReducer } from '@angular-redux/form';
-import { Action, combineReducers } from 'redux';
-import { createEpicMiddleware, combineEpics } from 'redux-observable';
+import {Component} from '@angular/core';
+import {NgRedux, DevToolsExtension} from '@angular-redux/store';
+import {NgReduxRouter, routerReducer} from '@angular-redux/router';
+import {provideReduxForms, composeReducers, defaultFormReducer} from '@angular-redux/form';
+import {Action, combineReducers} from 'redux';
+import {createEpicMiddleware, combineEpics} from 'redux-observable';
 import * as createLogger from 'redux-logger';
 
-import { AppActions } from './app.actions';
+import {AppActions} from './app.actions';
 // import { ElephantsEpics } from './elephants/elephants.epics';
 // import { elephantsReducer } from './elephants/elephants.reducer';
 
@@ -15,6 +15,7 @@ import { AppActions } from './app.actions';
 
 import {delayedTransportReducer} from "./delayed-transport/delayed-transport.reducer";
 import {DelayedTransportEpics} from "./delayed-transport/delayed-transport.epics";
+import {FormBuilder, Validators} from "@angular/forms";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,13 +23,15 @@ import {DelayedTransportEpics} from "./delayed-transport/delayed-transport.epics
 })
 export class AppComponent {
   title = 'app works!';
-  constructor(
-    private ngRedux: NgRedux<any>,
-    private actions: AppActions,
-    devTools: DevToolsExtension,
-    ngReduxRouter: NgReduxRouter,
-    delayedTransport: DelayedTransportEpics
-  ) {
+
+
+
+  constructor(public fb: FormBuilder,
+              private ngRedux: NgRedux<any>,
+              private actions: AppActions,
+              devTools: DevToolsExtension,
+              ngReduxRouter: NgReduxRouter,
+              delayedTransport: DelayedTransportEpics) {
     const rootReducer = composeReducers(
       defaultFormReducer(),
       combineReducers({
@@ -43,7 +46,7 @@ export class AppComponent {
         createLogger(),
         createEpicMiddleware(combineEpics(...delayedTransport.epics)),
       ],
-      devTools.isEnabled() ? [ devTools.enhancer() ] : []);
+      devTools.isEnabled() ? [devTools.enhancer()] : []);
     ngReduxRouter.initialize();
     provideReduxForms(ngRedux);
   }
