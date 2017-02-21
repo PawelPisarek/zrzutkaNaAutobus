@@ -1,0 +1,9 @@
+<ul>
+  nazwa pociągu <b>alternatywa</b>
+  <li *ngFor="let transport of delayedTransport$ | async; trackBy:getItemName">
+    {{transport.nameTrain}} <b>{{transport.alternative}}</b>
+  </li>
+
+
+</ul>
+<a routerLink="/add" routerLinkActive="active">add</a>
