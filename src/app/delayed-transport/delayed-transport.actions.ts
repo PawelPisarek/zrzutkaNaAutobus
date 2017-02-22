@@ -5,10 +5,18 @@ import { Action } from 'redux';
 export class DelayedTransportActions {
   static readonly LOAD_SUCCEEDED = 'LOAD_SUCCEEDED(DelayedTransport)';
   static readonly LOAD_FAILED = 'LOAD_FAILED(DelayedTransport)';
+  static readonly FORM_DATA = 'FORM_DATA(DelayedTransport)';
 
   loadSucceeded(payload) {
     return {
       type: DelayedTransportActions.LOAD_SUCCEEDED,
+      payload,
+    };
+  }
+
+  formData(payload) {
+    return {
+      type: DelayedTransportActions.FORM_DATA,
       payload,
     };
   }
