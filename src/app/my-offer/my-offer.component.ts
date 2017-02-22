@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {MyOfferService} from "./my-offer.service";
-import {ActivatedRoute} from "@angular/router";
-
+import {Component, OnInit} from "@angular/core";
+import {NgRedux} from "@angular-redux/store";
+import {MyOfferState, AppState} from "../app-state";
+import {Observable} from "rxjs";
 @Component({
   selector: 'app-my-offer',
   templateUrl: './my-offer.component.html',
@@ -9,11 +9,20 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MyOfferComponent implements OnInit {
 
-  constructor(private usersService: MyOfferService, private route: ActivatedRoute) {}
+  public myOffer$;
 
-  myOffer;
+  constructor(private ngRedux: NgRedux<AppState>) {
+    this.myOffer$ = ngRedux.select('myOffer')
+      .flatMap((data: MyOfferState) => {
+      return new Observable(observer => {
+        observer.next(data && data.list);
+      });
+    })
+  }
+
+  getItemName(index, item) {
+    return item.price;
+  }
   ngOnInit(): void {
-    this.myOffer = this.route.snapshot.data['MyOffer'];
-    console.log(this.myOffer);
   }
 }

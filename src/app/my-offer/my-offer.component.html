@@ -1,3 +1,3 @@
-<p>
-  my-offer works!
-</p>
+<li *ngFor="let transport of myOffer$ | async; trackBy:getItemName">
+ {{transport.price}} <b>{{transport.timeToLeft}}</b>
+</li>
