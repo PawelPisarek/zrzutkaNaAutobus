@@ -1,7 +1,9 @@
 <form [formGroup]="loginForm" (ngSubmit)="doLogin($event.value)">
- Twoja maksymalna cena <input formControlName="price" type="text" placeholder="Your price"><br>
-czas trwania oferty  <input formControlName="timeToLeft" type="text" placeholder="Your timeToLeft"><br>
-  <button type="submit">zaakceptuj</button>
+ Twoja maksymalna cena <input formControlName="price" type="number" placeholder="Your price">
+  <span *ngIf="formErrors.firstname" class="alert alert-danger">{{ formErrors.firstname }}</span>
+  <br>
+czas trwania oferty  <input formControlName="timeToLeft" type="number" placeholder="Your timeToLeft">
+  <span *ngIf="formErrors.lastname" class="alert alert-danger">{{ formErrors.lastname }}</span><br>
+  <button [disabled]="!loginForm.valid" type="submit">Send</button>
 </form>
-<button type="submit">przedulz</button><br>
 <button type="submit">pokaż chętnych</button>

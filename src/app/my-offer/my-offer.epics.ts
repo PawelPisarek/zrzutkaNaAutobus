@@ -7,6 +7,7 @@ import {NgRedux, DevToolsExtension} from '@angular-redux/store';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 
 import {MyOfferService} from "./my-offer.service";
@@ -25,7 +26,7 @@ export class MyOfferEpics {
 
   loadMyOffer = action$ => action$
     .ofType(AppActions.LOAD_DATA_MY_OFFER)
-    .switchMap(a => this.service.showMyOffer(this.ngRedux.getState().myOffer.id)
+    .switchMap(a => this.service.showMyOffer(this.ngRedux.getState().myOffer.id, "ja0.9095906582098909")
       .map(data => this.actions.loadSucceeded(data))
       .catch(err => of(this.actions.loadFailed(err))));
 

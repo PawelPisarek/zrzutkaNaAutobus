@@ -4,6 +4,7 @@ import {DelayedTransportModel} from "../delayed-transport/delayed-transport.inte
 import {NgRedux, DevToolsExtension} from '@angular-redux/store';
 import {DelayedTransportActions} from "../delayed-transport/delayed-transport.actions";
 import {AppActions} from "../app.actions";
+import {AppState} from "../app-state";
 
 @Component({
   selector: 'app-delayed-transport-add',
@@ -22,7 +23,7 @@ export class DelayedTransportAddComponent implements OnInit {
     lng: ["", Validators.required]
   });
 
-  constructor(public fb: FormBuilder, private actions: AppActions, private ac: DelayedTransportActions, private ngRedux: NgRedux<any>) {
+  constructor(public fb: FormBuilder, private actions: AppActions, private ac: DelayedTransportActions, private ngRedux: NgRedux<AppState>) {
   }
 
   createTransport(event: DelayedTransportModel) {

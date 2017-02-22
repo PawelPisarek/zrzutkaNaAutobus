@@ -14,17 +14,8 @@ export class MyOfferService {
 
   private JSON_HEADER = {headers: new Headers({'Content-Type': 'application/json'})};
 
-  getAll() {
-    return this.http.get(ELEPHANTS_URL)
-      .map(resp => resp.json())
-      .map(records => records.map(
-        (record: DelayedTransport) => ({
-          nameTrain: record.nameTrain,
-          alternative: record.alternative,
-        })));
-  }
 
-  postData(form,id) {
+  postData(form, id) { //TODO przerobić żeby z czasu w minutach przerabiać na data w formacie timeStamp zakończenia
     const body = JSON.stringify(form);
     return this.http.post(`${ELEPHANTS_URL}/delayed-transport/${id}/my-offer`, body, this.JSON_HEADER)
       .map(resp => resp.json())
@@ -33,14 +24,16 @@ export class MyOfferService {
       });
   }
 
-  showMyOffer(id){
+  showMyOffer(id,authorizedUser) {
     return this.http.get(`${ELEPHANTS_URL}/delayed-transport/${id}/my-offer`)
       .map(resp => resp.json())
       .map(records => records.map(
-        (record: MyOffer) => ({
-          price: record.price,
-          timeToLeft: record.timeToLeft,
-        })));
+        (record: MyOffer) => new MyOffer(record.price, record.timeToLeft, record.author))).map(listMyOffer=>{
+          return {
+            authorized:authorizedUser,
+            list:listMyOffer
+          }
+      });
 
   }
 

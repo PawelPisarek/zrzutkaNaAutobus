@@ -7,6 +7,7 @@ export class MyOfferActions {
   static readonly LOAD_FAILED = 'LOAD_FAILED(MyOfferActions)';
   static readonly FORM_DATA = 'FORM_DATA(MyOfferActions)';
   static readonly SET_ID = 'SET_ID(MyOfferActions)';
+  static readonly UPDATE_FORM = 'UPDATE_FORM(MyOfferActions)';
 
   loadSucceeded(payload) {
     return {
