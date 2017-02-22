@@ -20,7 +20,7 @@ export class MyOfferEpics {
 
   constructor(private service: MyOfferService, private ngRedux: NgRedux<AppState>, private a: AppActions,
               private actions: MyOfferActions) {
-    this.epics = [this.loadMyOffer];
+    this.epics = [this.loadMyOffer, this.postMyOffer];
   }
 
   loadMyOffer = action$ => action$
@@ -28,5 +28,16 @@ export class MyOfferEpics {
     .switchMap(a => this.service.showMyOffer(this.ngRedux.getState().myOffer.id)
       .map(data => this.actions.loadSucceeded(data))
       .catch(err => of(this.actions.loadFailed(err))));
+
+  postMyOffer = action$ => action$
+    .ofType(AppActions.POST_DATA_MY_OFFER)
+    .switchMap(a => this.service.postData(this.ngRedux.getState().myOffer.form, this.ngRedux.getState().myOffer.id))
+    .map(data => this.actions.loadSucceeded(data))
+    .switchMap(data => {
+      this.ngRedux.dispatch(this.a.loadMyOffer());
+      return [];
+    })
+    .catch(err => of(this.actions.loadFailed(err)))
+
 
 }

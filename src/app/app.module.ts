@@ -10,6 +10,7 @@ import {AppActions} from "./app.actions";
 import {PreloadAllModules, RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
 import {HomeModule} from "./home/home.module";
+import { FormComponent } from './my-offer/form/form.component';
 
 @NgModule({
   declarations: [

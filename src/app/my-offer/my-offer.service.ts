@@ -24,9 +24,9 @@ export class MyOfferService {
         })));
   }
 
-  postData(form) {
+  postData(form,id) {
     const body = JSON.stringify(form);
-    return this.http.post(ELEPHANTS_URL, body, this.JSON_HEADER)
+    return this.http.post(`${ELEPHANTS_URL}/delayed-transport/${id}/my-offer`, body, this.JSON_HEADER)
       .map(resp => resp.json())
       .map(records => {
         return [];

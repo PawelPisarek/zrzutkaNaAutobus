@@ -5,13 +5,19 @@ import {MyOfferService} from "./my-offer.service";
 import {MyOfferComponent} from "./my-offer.component";
 import {MyOfferActions} from "./my-offer.actions";
 import {MyOfferEpics} from "./my-offer.epics";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormModule} from "./form/form.module";
+import {FormComponent} from "./form/form.component";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FormModule,
   ],
   providers: [MyOfferResolve, MyOfferService, MyOfferActions, MyOfferEpics],
-  declarations: [MyOfferComponent]
+  declarations: [MyOfferComponent,FormComponent]
 })
 export class MyOfferModule {
 }

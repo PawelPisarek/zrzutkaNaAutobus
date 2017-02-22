@@ -1,0 +1,7 @@
+<form [formGroup]="loginForm" (ngSubmit)="doLogin($event.value)">
+ Twoja maksymalna cena <input formControlName="price" type="text" placeholder="Your price"><br>
+czas trwania oferty  <input formControlName="timeToLeft" type="text" placeholder="Your timeToLeft"><br>
+  <button type="submit">zaakceptuj</button>
+</form>
+<button type="submit">przedulz</button><br>
+<button type="submit">pokaż chętnych</button>
