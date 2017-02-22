@@ -28,7 +28,7 @@ export class DelayedTransportEpics {
       .catch(err => of(this.actions.loadFailed(err))));
 
   postDelayedTransport = action$ => action$
-    .ofType(AppActions.POST_DATA)
+    .ofType(AppActions.POST_DATA_DELAYED_TRANSPORT)
     .switchMap(a => this.service.postData(this.ngRedux.getState().delayedTransport[0]))
     .map(data => this.actions.loadSucceeded(data))
     .switchMap(data => {

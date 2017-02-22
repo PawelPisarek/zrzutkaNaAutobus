@@ -4,7 +4,7 @@ import { Action } from 'redux';
 @Injectable()
 export class AppActions {
   static LOAD_DATA = 'LOAD_DATA';
-  static POST_DATA = 'POST_DATA';
+  static POST_DATA_DELAYED_TRANSPORT = 'POST_DATA';
 
   loadData() {
     return {
@@ -13,7 +13,7 @@ export class AppActions {
   }
   postData() {
     return {
-      type: AppActions.POST_DATA
+      type: AppActions.POST_DATA_DELAYED_TRANSPORT
     }
   }
 }

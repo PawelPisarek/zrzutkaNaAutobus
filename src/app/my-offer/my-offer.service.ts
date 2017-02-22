@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {DelayedTransportModule} from "./delayed-transport.module";
-import {DelayedTransport} from "./delayed-transport.interface";
+import {MyOffer} from "./my-offer";
+import {DelayedTransport} from "../delayed-transport/delayed-transport.interface";
 
 // A fake API on the internets.
-const ELEPHANTS_URL = 'http://localhost:3000/delayed-transport';
+const ELEPHANTS_URL = 'http://localhost:3000';
 
 @Injectable()
-export class DelayedTransportService {
+export class MyOfferService {
   constructor(private http: Http) {
   }
 
@@ -19,7 +19,6 @@ export class DelayedTransportService {
       .map(resp => resp.json())
       .map(records => records.map(
         (record: DelayedTransport) => ({
-          id: record.id,
           nameTrain: record.nameTrain,
           alternative: record.alternative,
         })));
@@ -32,6 +31,17 @@ export class DelayedTransportService {
       .map(records => {
         return [];
       });
+  }
+
+  showMyOffer(id){
+    return this.http.get(`${ELEPHANTS_URL}/delayed-transport/${id}/my-offer`)
+      .map(resp => resp.json())
+      .map(records => records.map(
+        (record: MyOffer) => ({
+          price: record.price,
+          timeToLeft: record.timeToLeft,
+        })));
+
   }
 
 

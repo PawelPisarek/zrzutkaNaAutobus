@@ -9,6 +9,8 @@ import {DelayedTransportListComponent} from "./delayed-transport-list/delayed-tr
 import {DelayedTransportService} from "./delayed-transport.service";
 import {DelayedTransportActions} from "./delayed-transport.actions";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MyOfferModule} from "../my-offer/my-offer.module";
+import {MyOfferComponent} from "../my-offer/my-offer.component";
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     DelayedTransportAddModule,
     ReactiveFormsModule,
     FormsModule,
+    MyOfferModule,
   ],
   providers:
     [DelayedTransportService,
