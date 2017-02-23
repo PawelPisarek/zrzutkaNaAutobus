@@ -6,6 +6,11 @@ export interface AppState {
 }
 
 export interface MyOfferState {
-  list: any[], form: any, error: string, id: string,updateForm:any
+  list: any[],
+  form: any,
+  error: string,
+  id: string,
+  updateForm: any,
+  eager: {}
 }
 

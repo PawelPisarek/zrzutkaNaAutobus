@@ -10,3 +10,7 @@ export class MyOfferWithMe extends MyOffer {
 
   }
 }
+export class Eager {
+  constructor(public quantity: number, public min: number, public max: number) {
+  }
+}
