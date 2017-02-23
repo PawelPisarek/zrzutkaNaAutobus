@@ -1,0 +1,4 @@
+<form [formGroup]="loginForm" (ngSubmit)="createTransport($event.value)">
+  <input formControlName="text" type="text" placeholder="tekst komentarza">
+<button type="submit"> dodaj komentarz</button>
+</form>

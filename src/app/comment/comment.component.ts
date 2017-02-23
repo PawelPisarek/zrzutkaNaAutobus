@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {AppState} from "../app-state";
 import {NgRedux} from "@angular-redux/store";
 import {PROPERTY_BINDING} from "../shared/data.service";
+import {AppState} from "../app-state";
 
 @Component({
-  selector: 'app-transport-offer',
-  templateUrl: './transport-offer.component.html',
-  styleUrls: ['./transport-offer.component.css']
+  selector: 'app-comment',
+  templateUrl: './comment.component.html',
+  styleUrls: ['./comment.component.css']
 })
-export class TransportOfferComponent implements OnInit {
+export class CommentComponent implements OnInit {
 
   public myOfferProperty$;
 
@@ -19,11 +19,13 @@ export class TransportOfferComponent implements OnInit {
   }
 
   getItemName(index, item) {
-    return item.price;
+    return item.text;
   }
+  setDataToStore(data){
+    console.log(data);
+  }
+
 
   ngOnInit(): void {
   }
-
-
 }

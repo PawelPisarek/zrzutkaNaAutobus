@@ -45,7 +45,7 @@ export class AppComponent {
       combineReducers({
         delayedTransport: delayedTransportReducer,
         myOffer: myOfferReducer,
-        transportOfferEpics: trasportOfferReducer,
+        transportOffer: trasportOfferReducer,
         router: routerReducer,
       }));
 

@@ -1,3 +1,5 @@
-<p>
-  transport-offer works!
-</p>
+<li *ngFor="let transport of myOfferProperty$('transportOffer','list') | async; trackBy:getItemName">
+  {{transport.price}} <b>{{transport.transportName}}</b> {{transport.seats}} {{transport.isJoined}}
+</li>
+komentarze
+<app-comment></app-comment>

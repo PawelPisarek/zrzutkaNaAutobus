@@ -1,0 +1,4 @@
+<li *ngFor="let transport of myOfferProperty$('transportOffer','comment') | async; trackBy:getItemName">
+  {{transport.text}} {{transport.author}}
+</li>
+<app-comment-form (formData)="setDataToStore($event)"></app-comment-form>

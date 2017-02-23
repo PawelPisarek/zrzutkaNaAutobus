@@ -20,13 +20,19 @@ export class TransportOfferEpics {
 
   constructor(private service: TransportOfferService, private ngRedux: NgRedux<AppState>, private appActions: AppActions,
               private actions: TransportOfferActions) {
-    this.epics = [this.loadMyOffer];
+    this.epics = [this.loadTransportOffer,this.loadComments];
   }
 
-  loadMyOffer = action$ => action$
+  loadTransportOffer = action$ => action$
     .ofType(AppActions.LOAD_DATA_MY_OFFER)
     .switchMap(a => this.service.showMyOffer(this.ngRedux.getState().myOffer.id)
       .map(data => this.actions.loadSucceeded(data))
+      .catch(err => of(this.actions.loadFailed(err))));
+
+  loadComments = action$ => action$
+    .ofType(AppActions.LOAD_DATA_MY_OFFER)
+    .switchMap(a => this.service.showComments(this.ngRedux.getState().myOffer.id)
+      .map(data => this.actions.loadSucceededComment(data))
       .catch(err => of(this.actions.loadFailed(err))));
 
 }

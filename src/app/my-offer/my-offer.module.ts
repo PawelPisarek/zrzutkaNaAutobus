@@ -10,6 +10,8 @@ import {FormModule} from "./form/form.module";
 import {FormComponent} from "./form/form.component";
 import {TransportOfferComponent} from "../transport-offer/transport-offer.component";
 import {TransportOfferModule} from "../transport-offer/transport-offer.module";
+import {CommentComponent} from "../comment/comment.component";
+import {CommentModule} from "../comment/comment.module";
 
 @NgModule({
   imports: [
@@ -17,7 +19,8 @@ import {TransportOfferModule} from "../transport-offer/transport-offer.module";
     ReactiveFormsModule,
     FormsModule,
     FormModule,
-    TransportOfferModule
+    TransportOfferModule,
+    CommentModule
   ],
   providers: [MyOfferResolve, MyOfferService, MyOfferActions, MyOfferEpics],
   declarations: [MyOfferComponent, FormComponent, TransportOfferComponent]

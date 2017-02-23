@@ -12,6 +12,8 @@ import {appRoutes} from "./app.routes";
 import {HomeModule} from "./home/home.module";
 import { FormComponent } from './my-offer/form/form.component';
 import { TransportOfferComponent } from './transport-offer/transport-offer.component';
+import { CommentComponent } from './comment/comment.component';
+import { CommentFormComponent } from './comment/form/comment-form.component';
 
 @NgModule({
   declarations: [

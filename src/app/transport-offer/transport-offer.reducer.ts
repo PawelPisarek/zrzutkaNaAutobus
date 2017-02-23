@@ -12,6 +12,12 @@ export function trasportOfferReducer(state = {}, action: IPayloadAction) {
         list: action.payload
       })
     }
+    case TransportOfferActions.LOAD_SUCCEEDED_COMMENT: {
+
+      return Object.assign({}, state, {
+        comment: action.payload
+      })
+    }
     case TransportOfferActions.LOAD_FAILED:
       return Object.assign({}, state, {
         error: action.payload

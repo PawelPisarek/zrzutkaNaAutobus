@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {TransportOfferEpics} from "./transport-offer.epics";
 import {TransportOfferActions} from "./transport-offer.action";
 import {TransportOfferService} from "./transport-offer.service";
+import {CommentComponent} from "../comment/comment.component";
+import {CommentModule} from "../comment/comment.module";
 
 @NgModule({
   imports: [
@@ -11,7 +13,8 @@ import {TransportOfferService} from "./transport-offer.service";
   providers: [
     TransportOfferEpics, TransportOfferActions, TransportOfferService
   ],
-  declarations: []
+  declarations: [],
+  exports:[]
 })
 export class TransportOfferModule {
 }
