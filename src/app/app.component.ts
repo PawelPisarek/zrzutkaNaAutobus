@@ -18,6 +18,8 @@ import {DelayedTransportEpics} from "./delayed-transport/delayed-transport.epics
 import {FormBuilder, Validators} from "@angular/forms";
 import {MyOfferEpics} from "./my-offer/my-offer.epics";
 import {myOfferReducer} from "./my-offer/my-offer.reducer";
+import {TransportOfferEpics} from "./transport-offer/transport-offer.epics";
+import {trasportOfferReducer} from "./transport-offer/transport-offer.reducer";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -34,6 +36,7 @@ export class AppComponent {
               devTools: DevToolsExtension,
               ngReduxRouter: NgReduxRouter,
               myOffer: MyOfferEpics,
+              transportOfferEpics: TransportOfferEpics,
               delayedTransport: DelayedTransportEpics
 
   ) {
@@ -42,6 +45,7 @@ export class AppComponent {
       combineReducers({
         delayedTransport: delayedTransportReducer,
         myOffer: myOfferReducer,
+        transportOfferEpics: trasportOfferReducer,
         router: routerReducer,
       }));
 
@@ -52,6 +56,7 @@ export class AppComponent {
         createLogger(),
         createEpicMiddleware(combineEpics(...delayedTransport.epics)),
         createEpicMiddleware(combineEpics(...myOffer.epics)),
+        createEpicMiddleware(combineEpics(...transportOfferEpics.epics)),
       ],
       devTools.isEnabled() ? [devTools.enhancer()] : []);
     ngReduxRouter.initialize();

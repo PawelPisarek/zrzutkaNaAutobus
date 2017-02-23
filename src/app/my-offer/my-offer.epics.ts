@@ -19,7 +19,7 @@ import {AppState} from "../app-state"
 export class MyOfferEpics {
   epics: Epic<Action>[];
 
-  constructor(private service: MyOfferService, private ngRedux: NgRedux<AppState>, private a: AppActions,
+  constructor(private service: MyOfferService, private ngRedux: NgRedux<AppState>, private appActions: AppActions,
               private actions: MyOfferActions) {
     this.epics = [this.loadMyOffer, this.postMyOffer];
   }
@@ -35,7 +35,7 @@ export class MyOfferEpics {
     .switchMap(a => this.service.postData(this.ngRedux.getState().myOffer.form, this.ngRedux.getState().myOffer.id))
     .map(data => this.actions.loadSucceeded(data))
     .switchMap(data => {
-      this.ngRedux.dispatch(this.a.loadMyOffer());
+      this.ngRedux.dispatch(this.appActions.loadMyOffer());
       return [];
     })
     .catch(err => of(this.actions.loadFailed(err)))

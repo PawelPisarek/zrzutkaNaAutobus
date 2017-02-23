@@ -8,3 +8,4 @@ export const PROPERTY_BINDING = (ngRedux,property, secondProperty, thirdProperty
     return ngRedux.select(selector => selector[property]);
   else  return ngRedux.select(selector => selector);
 };
+export const ELEPHANTS_URL = 'http://localhost:3000';

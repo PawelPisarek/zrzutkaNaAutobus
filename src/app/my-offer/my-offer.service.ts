@@ -3,9 +3,10 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {MyOffer} from "./my-offer";
 import {DelayedTransport} from "../delayed-transport/delayed-transport.interface";
+import {ELEPHANTS_URL} from "../shared/data.service";
 
 // A fake API on the internets.
-const ELEPHANTS_URL = 'http://localhost:3000';
+
 
 @Injectable()
 export class MyOfferService {

@@ -8,6 +8,8 @@ import {MyOfferEpics} from "./my-offer.epics";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FormModule} from "./form/form.module";
 import {FormComponent} from "./form/form.component";
+import {TransportOfferComponent} from "../transport-offer/transport-offer.component";
+import {TransportOfferModule} from "../transport-offer/transport-offer.module";
 
 @NgModule({
   imports: [
@@ -15,9 +17,10 @@ import {FormComponent} from "./form/form.component";
     ReactiveFormsModule,
     FormsModule,
     FormModule,
+    TransportOfferModule
   ],
   providers: [MyOfferResolve, MyOfferService, MyOfferActions, MyOfferEpics],
-  declarations: [MyOfferComponent,FormComponent]
+  declarations: [MyOfferComponent, FormComponent, TransportOfferComponent]
 })
 export class MyOfferModule {
 }
