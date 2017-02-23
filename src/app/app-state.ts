@@ -11,6 +11,6 @@ export interface MyOfferState {
   error: string,
   id: string,
   updateForm: any,
-  eager: {}
+  eager: any
 }
 
