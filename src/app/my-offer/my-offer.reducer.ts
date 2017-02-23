@@ -2,6 +2,7 @@ import {IPayloadAction} from "../utils/payload-action";
 import {MyOfferActions} from "./my-offer.actions";
 import {MyOfferState} from "../app-state";
 import {MyOffer, MyOfferWithMe, Eager} from "./my-offer";
+import {EMPTY_ARRAY} from "../shared/data.service";
 const minMax = (action, maxMin) => {
   if ((<MyOffer[]>action.payload.list).length > 0) {
     return (<MyOffer[]>action.payload.list).reduce((prev, current) => {
@@ -14,7 +15,7 @@ const minMax = (action, maxMin) => {
     });
   }
   else {
-    return new MyOffer(9999999, 9999999, 'thereIsNothingInArraySoMaxMinWontWork')
+    return new MyOffer(9999999, 9999999, EMPTY_ARRAY)
   }
 };
 export function myOfferReducer(state: MyOfferState = {

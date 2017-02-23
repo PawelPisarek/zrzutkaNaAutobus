@@ -5,6 +5,7 @@ import {AppState, MyOfferState} from "../../app-state";
 import {NgRedux} from "@angular-redux/store";
 import {AppActions} from "../../app.actions";
 import {MyOfferActions} from "../my-offer.actions";
+import {EMPTY_ARRAY} from "../../shared/data.service";
 
 
 @Component({
@@ -24,10 +25,11 @@ export class FormComponent implements OnInit {
     });
 
     this.ngRedux.select('myOffer').subscribe((data: MyOfferState) => {  // TODO usunąć subskrybcje
-      this.loginForm.patchValue({
-        price: data.updateForm.price,
-        timeToLeft: data.updateForm.timeToLeft
-      });
+      if (EMPTY_ARRAY !== data.updateForm.author)
+        this.loginForm.patchValue({
+          price: data.updateForm.price,
+          timeToLeft: data.updateForm.timeToLeft
+        });
     });
 
 
