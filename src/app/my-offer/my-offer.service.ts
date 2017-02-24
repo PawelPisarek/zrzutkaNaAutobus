@@ -16,7 +16,10 @@ export class MyOfferService {
   private JSON_HEADER = {headers: new Headers({'Content-Type': 'application/json'})};
 
 
-  postData(form, id) { //TODO przerobić żeby z czasu w minutach przerabiać na data w formacie timeStamp zakończenia
+  postData(form, id) { /* TODO przerobić żeby z czasu w minutach przerabiać na data w formacie timeStamp zakończenia
+                          nie może tak być bo to musi być niezależne od strefy czasowej
+                          więc użytkownik klikający w Londynie będzie miał oferte ważną dłużej niż ten co w Polsce
+                        */
     const body = JSON.stringify(form);
     return this.http.post(`${ELEPHANTS_URL}/delayed-transport/${id}/my-offer`, body, this.JSON_HEADER)
       .map(resp => resp.json())

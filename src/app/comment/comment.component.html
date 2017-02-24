@@ -1,4 +1,13 @@
-<li *ngFor="let transport of myOfferProperty$('transportOffer','comment') | async; trackBy:getItemName">
-  {{transport.text}} {{transport.author}}
-</li>
+<ul>
+  <li *ngFor="let transport of myOfferProperty$('transportOffer','comment') | async; trackBy:getItemName">
+    {{transport.text}} {{transport.author}}
+    <ul>
+      <li *ngFor="let transport2 of transport.children">
+        {{transport2.text}} {{transport2.author}}
+      </li>
+      <app-comment-form (formData)="setDataToStore($event)" [root]="transport.id"></app-comment-form>
+    </ul>
+
+  </li>
+</ul>
 <app-comment-form (formData)="setDataToStore($event)"></app-comment-form>

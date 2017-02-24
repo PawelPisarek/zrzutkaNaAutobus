@@ -22,6 +22,12 @@ export function trasportOfferReducer(state = {}, action: IPayloadAction) {
       return Object.assign({}, state, {
         error: action.payload
       });
+
+    case TransportOfferActions.FORM_DATA: {
+      return Object.assign({}, state, {
+        formComment: action.payload
+      });
+    }
   }
   return state;
 }

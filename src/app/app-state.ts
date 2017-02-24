@@ -3,6 +3,7 @@
  */
 export interface AppState {
   myOffer: MyOfferState;
+  transportOffer: TransportOfferState;
 }
 
 export interface MyOfferState {
@@ -12,5 +13,9 @@ export interface MyOfferState {
   id: string,
   updateForm: any,
   eager: any
+}
+
+export interface TransportOfferState {
+  formComment;
 }
 
