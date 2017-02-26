@@ -17,6 +17,10 @@ export class TransportOfferService {
     return this.http.get(`${ELEPHANTS_URL}/delayed-transport/${id}/transport-offer`)
       .map(resp => resp.json())
       .map(records => records.map(
-        (record: TransportOffer) => new TransportOffer(record.price, record.transportName, record.seats, record.isJoined)))
+        (record: TransportOffer) => new TransportOffer(record.id,
+          record.price,
+          record.transportName,
+          record.seats,
+          record.isJoined)))
   }
 }

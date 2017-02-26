@@ -2,7 +2,10 @@ import {Component, OnInit} from "@angular/core";
 import {NgRedux} from "@angular-redux/store";
 import {MyOfferState, AppState} from "../app-state";
 import {Observable} from "rxjs";
-import {PROPERTY_BINDING} from "../shared/data.service";
+import {PROPERTY_BINDING, EMPTY_ARRAY} from "../shared/data.service";
+// import * as moment form 'moment';
+import * as moment from 'moment';
+import {MyOfferWithMe} from "./my-offer";
 @Component({
   selector: 'app-my-offer',
   templateUrl: './my-offer.component.html',
@@ -12,6 +15,7 @@ export class MyOfferComponent implements OnInit {
 
   public myOffer$;
   public myOfferProperty$;
+  public data = moment().subtract(30, 'minutes').toDate();
 
   constructor(private ngRedux: NgRedux<AppState>) {
     this.myOffer$ = ngRedux.select('myOffer')
@@ -21,14 +25,22 @@ export class MyOfferComponent implements OnInit {
         });
       });
     this.myOfferProperty$ = (property, secondProperty, thirdProperty) => {
-     return PROPERTY_BINDING(ngRedux, property, secondProperty, thirdProperty)
+      return PROPERTY_BINDING(ngRedux, property, secondProperty, thirdProperty)
     };
   }
 
   getItemName(index, item) {
+
     return item.price;
   }
 
+  isEmpty() {
+    return this.myOfferProperty$('myOffer', 'updateForm', 'author').flatMap((data: string) => {
+      return new Observable(observer => {
+        observer.next(data !== EMPTY_ARRAY);
+      });
+    });
+  }
   ngOnInit(): void {
   }
 }

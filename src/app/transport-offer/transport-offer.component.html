@@ -1,5 +1,6 @@
 <li *ngFor="let transport of myOfferProperty$('transportOffer','list') | async; trackBy:getItemName">
   {{transport.price}} <b>{{transport.transportName}}</b> {{transport.seats}} {{transport.isJoined}}
+  <button (click)="acceptOffer(transport)">zaakceptuj</button>
 </li>
 komentarze
 <app-comment></app-comment>

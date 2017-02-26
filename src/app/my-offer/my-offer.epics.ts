@@ -26,7 +26,7 @@ export class MyOfferEpics {
 
   loadMyOffer = action$ => action$
     .ofType(AppActions.LOAD_DATA_MY_OFFER)
-    .switchMap(a => this.service.showMyOffer(this.ngRedux.getState().myOffer.id, "ja0.9095906582098909")
+    .switchMap(a => this.service.showMyOffer(this.ngRedux.getState().myOffer.id, "ja0.6529947992553338")
       .map(data => this.actions.loadSucceeded(data))
       .catch(err => of(this.actions.loadFailed(err))));
 

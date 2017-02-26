@@ -14,10 +14,11 @@ import { FormComponent } from './my-offer/form/form.component';
 import { TransportOfferComponent } from './transport-offer/transport-offer.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentFormComponent } from './comment/form/comment-form.component';
+import {utilInjectables} from "./util/util";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes,{ useHash: true, preloadingStrategy: PreloadAllModules }),

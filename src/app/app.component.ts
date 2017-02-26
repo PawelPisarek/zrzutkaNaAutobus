@@ -19,7 +19,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {MyOfferEpics} from "./my-offer/my-offer.epics";
 import {myOfferReducer} from "./my-offer/my-offer.reducer";
 import {TransportOfferEpics} from "./transport-offer/transport-offer.epics";
-import {trasportOfferReducer} from "./transport-offer/transport-offer.reducer";
+import {transportOfferReducer} from "./transport-offer/transport-offer.reducer";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -45,7 +45,7 @@ export class AppComponent {
       combineReducers({
         delayedTransport: delayedTransportReducer,
         myOffer: myOfferReducer,
-        transportOffer: trasportOfferReducer,
+        transportOffer: transportOfferReducer,
         router: routerReducer,
       }));
 

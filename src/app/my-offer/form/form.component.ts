@@ -25,7 +25,7 @@ export class FormComponent implements OnInit {
     });
 
     this.ngRedux.select('myOffer').subscribe((data: MyOfferState) => {  // TODO usunąć subskrybcje
-      if (EMPTY_ARRAY !== data.updateForm.author)
+      // if (EMPTY_ARRAY !== data.updateForm.author)
         this.loginForm.patchValue({
           price: data.updateForm.price,
           timeToLeft: data.updateForm.timeToLeft
@@ -44,7 +44,7 @@ export class FormComponent implements OnInit {
 
   doLogin(event: MyOffer) {
 
-    const myOffer = new MyOffer(this.loginForm.value.price, this.loginForm.value.timeToLeft, "ja" + Math.random());
+    const myOffer = new MyOffer(this.loginForm.value.price, this.loginForm.value.timeToLeft, "ja0.6529947992553338");
     this.ngRedux.dispatch(this.ac.formData(myOffer));
     this.ngRedux.dispatch(this.actions.postDataMyOffer());
   }

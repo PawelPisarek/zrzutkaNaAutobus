@@ -4,7 +4,7 @@ import {TransportOfferActions} from "./transport-offer.action";
 /**
  * Created by pawe on 2/23/17.
  */
-export function trasportOfferReducer(state = {}, action: IPayloadAction) {
+export function transportOfferReducer(state = {}, action: IPayloadAction) {
   switch (action.type) {
     case TransportOfferActions.LOAD_SUCCEEDED: {
 
@@ -26,6 +26,12 @@ export function trasportOfferReducer(state = {}, action: IPayloadAction) {
     case TransportOfferActions.FORM_DATA: {
       return Object.assign({}, state, {
         formComment: action.payload
+      });
+    }
+
+    case TransportOfferActions.ACCEPT_OFFER: {
+      return Object.assign({}, state, {
+        acceptedOffer: action.payload
       });
     }
   }

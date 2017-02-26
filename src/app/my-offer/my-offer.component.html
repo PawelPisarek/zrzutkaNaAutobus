@@ -1,9 +1,16 @@
-<br>price<b>timeToLeft</b>
-<li *ngFor="let transport of myOffer$ | async; trackBy:getItemName">
- {{transport.price}} <b>{{transport.timeToLeft}}</b>
-</li>
+<!--<br>price<b>timeToLeft</b>-->
+<!--<li *ngFor="let transport of myOffer$ | async; trackBy:getItemName">-->
+ <!--{{transport.price}} <b>{{transport.timeToLeft}}</b>-->
+<!--</li>-->
 <app-form></app-form>
-Znaleźliśmy <b>{{myOfferProperty$('myOffer','eager','quantity')|async}}</b> chętnych ceny od <b>{{myOfferProperty$('myOffer','eager','min')|async}}</b>
-do <b>{{myOfferProperty$('myOffer','eager','max')|async}}</b> <br>
+<p *ngIf="myOfferProperty$('myOffer','updateForm','me')|async">
+  {{myOfferProperty$('myOffer','updateForm','timeToLeft')|async|fromNow}} do końca trwania twojej oferty
+</p>
+<p *ngIf="isEmpty()|async">
+
+  Znaleźliśmy <b>{{myOfferProperty$('myOffer','eager','quantity')|async}}</b> chętnych ceny od <b>{{myOfferProperty$('myOffer','eager','min')|async}}</b>
+  do <b>{{myOfferProperty$('myOffer','eager','max')|async}}</b> <br>
+</p>
+
 Oferty
 <app-transport-offer></app-transport-offer>

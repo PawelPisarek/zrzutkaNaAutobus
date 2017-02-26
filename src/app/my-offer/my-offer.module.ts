@@ -12,6 +12,7 @@ import {TransportOfferComponent} from "../transport-offer/transport-offer.compon
 import {TransportOfferModule} from "../transport-offer/transport-offer.module";
 import {CommentComponent} from "../comment/comment.component";
 import {CommentModule} from "../comment/comment.module";
+import {utilInjectables} from "../util/util";
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {CommentModule} from "../comment/comment.module";
     CommentModule
   ],
   providers: [MyOfferResolve, MyOfferService, MyOfferActions, MyOfferEpics],
-  declarations: [MyOfferComponent, FormComponent, TransportOfferComponent]
+  declarations: [MyOfferComponent, FormComponent, TransportOfferComponent, utilInjectables
+  ]
 })
 export class MyOfferModule {
 }

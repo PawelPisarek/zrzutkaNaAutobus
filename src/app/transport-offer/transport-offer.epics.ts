@@ -20,7 +20,7 @@ export class TransportOfferEpics {
 
   constructor(private service: TransportOfferService, private serviceComment: CommentService, private ngRedux: NgRedux<AppState>, private appActions: AppActions,
               private actions: TransportOfferActions) {
-    this.epics = [this.loadTransportOffer, this.loadComments, this.postComment];
+    this.epics = [this.loadTransportOffer, this.loadComments, this.postComment, this.acceptOffer];
   }
 
   loadComment = () => this.serviceComment.showComments(this.ngRedux.getState().myOffer.id)
@@ -37,6 +37,15 @@ export class TransportOfferEpics {
     .ofType(TransportOfferActions.FORM_DATA)
     .switchMap(a => {
       return this.serviceComment.postData(this.ngRedux.getState().transportOffer.formComment, this.ngRedux.getState().myOffer.id);
+    })
+    .flatMap(data4 => {
+      return this.loadComment();
+    });
+
+  acceptOffer = action$ => action$
+    .ofType(TransportOfferActions.ACCEPT_OFFER)
+    .switchMap(a => {
+      return this.serviceComment.postData(this.ngRedux.getState().transportOffer.acceptedOffer.id, this.ngRedux.getState().myOffer.id);
     })
     .flatMap(data4 => {
       return this.loadComment();

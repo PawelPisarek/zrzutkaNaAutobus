@@ -1,3 +1,4 @@
+import {TransportOffer} from "./transport-offer/transport-offer";
 /**
  * Created by pawe on 2/22/17.
  */
@@ -17,5 +18,6 @@ export interface MyOfferState {
 
 export interface TransportOfferState {
   formComment;
+  acceptedOffer: TransportOffer;
 }
 
