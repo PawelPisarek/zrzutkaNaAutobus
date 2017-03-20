@@ -15,10 +15,12 @@ import { TransportOfferComponent } from './transport-offer/transport-offer.compo
 import { CommentComponent } from './comment/comment.component';
 import { CommentFormComponent } from './comment/form/comment-form.component';
 import {utilInjectables} from "./util/util";
+import { LoginComponent } from './login/login.component';
+import {LoginModule} from "./login/login.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes,{ useHash: true, preloadingStrategy: PreloadAllModules }),
@@ -29,7 +31,8 @@ import {utilInjectables} from "./util/util";
     NgReduxRouterModule,
     ReactiveFormsModule,
 
-    HomeModule
+    HomeModule,
+    LoginModule
   ],
   providers: [AppActions],
   bootstrap: [AppComponent]
