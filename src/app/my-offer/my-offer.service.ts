@@ -3,7 +3,7 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {MyOffer, MyOfferFromTimeStamp} from "./my-offer";
 import {DelayedTransport} from "../delayed-transport/delayed-transport.interface";
-import {URL} from "../shared/data.service";
+import {OLD_URL} from "../shared/data.service";
 import * as moment  from "moment";
 
 
@@ -26,7 +26,7 @@ export class MyOfferService {
 
     form = MyOfferFromTimeStamp.transform(form);
     const body = JSON.stringify(form);
-    return this.http.post(`${URL}/delayed-transport/${id}/my-offer`, body, this.JSON_HEADER)
+    return this.http.post(`${OLD_URL}/delayed-transport/${id}/my-offer`, body, this.JSON_HEADER)
       .map(resp => resp.json())
       .map(records => {
         return [];
@@ -34,7 +34,7 @@ export class MyOfferService {
   }
 
   showMyOffer(id, authorizedUser) {
-    return this.http.get(`${URL}/delayed-transport/${id}/my-offer`)
+    return this.http.get(`${OLD_URL}/delayed-transport/${id}/my-offer`)
       .map(resp => resp.json())
       .map(records => records.map(
         (record: MyOffer) => new MyOffer(record.price, record.timeToLeft, record.author))).map(listMyOffer => {

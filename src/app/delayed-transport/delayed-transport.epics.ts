@@ -18,7 +18,7 @@ export class DelayedTransportEpics {
 
   constructor(private service: DelayedTransportService, private ngRedux: NgRedux<any>, private a: AppActions,
               private actions: DelayedTransportActions) {
-    this.epics = [this.loadDelayedTransport, this.postDelayedTransport];
+    this.epics = [this.loadDelayedTransport, this.postDelayedTransport, this.loadDelayedTransportDetail];
   }
 
   loadDelayedTransport = action$ => action$
@@ -27,9 +27,16 @@ export class DelayedTransportEpics {
       .map(data => this.actions.loadSucceeded(data))
       .catch(err => of(this.actions.loadFailed(err))));
 
+  loadDelayedTransportDetail = action$ => action$
+    .ofType(DelayedTransportActions.LOAD_DATA_DELAYED_TRANSPORT_DETAIL)
+    .switchMap(a => this.service.getDetail(this.ngRedux.getState().myOffer.id))
+    .map(data => this.actions.loadDelayedTransportDetailSucceeded(data))
+    .catch(err => of(this.actions.loadFailed(err)));
+
+
   postDelayedTransport = action$ => action$
     .ofType(AppActions.POST_DATA_DELAYED_TRANSPORT)
-    .switchMap(a => this.service.postData(this.ngRedux.getState().delayedTransport[0]))
+    .switchMap(a => this.service.postData(this.ngRedux.getState().delayedTransport.all[0]))
     .map(data => this.actions.loadSucceeded(data))
     .switchMap(data => {
       this.ngRedux.dispatch(this.a.loadData());

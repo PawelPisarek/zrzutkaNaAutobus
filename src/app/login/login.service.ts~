@@ -1,14 +1,13 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import {Headers, Http} from "@angular/http";
 import {LoginInterface} from "./login.interface";
-import {OLD_URL,URL} from "../shared/data.service";
-import {ApiHttpService} from "../auth/api-http.service";
+import {URL} from "../shared/data.service";
 
 @Injectable()
 export class LoginService {
 
 
-  constructor(private http: Http, private authHttp: ApiHttpService) {
+  constructor(private http: Http) {
   }
 
   private HEADER = {
@@ -20,11 +19,23 @@ export class LoginService {
 
 
   getToken(login: LoginInterface) {
+
+    console.log(login);
+    let cos= {
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 8d18ef88-2751-4203-a0d0-d13b023b1c0b'
+      })
+    };
+
+    this.http.get(`http://localhost:8080/api/delayed-transport/1`,cos).subscribe((asd)=>{
+      console.log(asd);});
+
+
+
     let params: string = [`username=${login.username}`, `password=${login.password}`, `grant_type=password`].join('&');
+    console.log(params);
     return this.http.post(`${URL}/oauth/token`, params, this.HEADER)
       .map(resp => resp.json())
-      .map(resp => {
-        sessionStorage.setItem('token', resp.access_token);
-      })
   }
 }

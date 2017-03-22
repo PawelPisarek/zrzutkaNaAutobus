@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {DelayedTransport} from "../delayed-transport.interface";
 import {select} from "@angular-redux/store";
-
+import {AppState} from "../../app-state";
+import {NgRedux} from "@angular-redux/store";
+import {PROPERTY_BINDING} from "../../shared/data.service";
 @Component({
   selector: 'app-delayed-transport-list',
   templateUrl: 'delayed-transport-list.component.html',
@@ -10,17 +12,18 @@ import {select} from "@angular-redux/store";
 export class DelayedTransportListComponent implements OnInit {
 
 
-  // Shorthand for
-  // constructor(ngRedux: NgRedux { this.elephants$ = ngRedux.select('elephants'); })
-  @select() readonly delayedTransport$
 
-  // Since we're observing an array of items, we need to set up a 'trackBy'
-  // parameter so Angular doesn't tear down and rebuild the list's DOM every
-  // time there's an update.
   getItemName(index, item) {
     return item.nameTrain;
   }
-  constructor() { }
+
+  public delayedTransport$;
+  constructor(private ngRedux: NgRedux<AppState>) {
+    this.delayedTransport$ = (property, secondProperty, thirdProperty) => {
+      return PROPERTY_BINDING(ngRedux, property, secondProperty, thirdProperty)
+    };
+
+  }
 
   ngOnInit() {
   }

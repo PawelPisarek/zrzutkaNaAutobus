@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
     this.loginService.getToken(formValues)
       .subscribe((data) => {
         console.log(data);
+      },
+      error=>{
+        console.log(error);
       });
   }
 

@@ -1,21 +1,28 @@
 /**
  * Created by pawe on 3/20/17.
  */
-import { NgModule } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import {Host, ModuleWithProviders, NgModule, Optional, Provider, SkipSelf} from '@angular/core';
+import {Http, HttpModule, RequestOptions, XHRBackend} from '@angular/http';
+import {AuthConfig, AuthHttp, AuthModule} from "angular2-jwt";
+import {ApiHttpService} from "./api-http.service";
 
-function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig(), http, options);
-}
+
+
+
+
+export const ApiHttpServiceProvider = {
+  provide: ApiHttpService,
+  useFactory: (backend : XHRBackend, requestOptions : RequestOptions) => {
+    return new ApiHttpService(backend, requestOptions);
+  },
+  deps: [XHRBackend, RequestOptions]
+};
 
 @NgModule({
-  providers: [
-    {
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
-    }
-  ]
+  imports: [
+  ],
+  providers: [ApiHttpServiceProvider],
+  declarations: []
 })
-export class AuthModule {}
+export class ApiHttpServiceModule {
+}

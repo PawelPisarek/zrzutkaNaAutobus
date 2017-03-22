@@ -3,6 +3,11 @@ export class MyOffer {
   constructor(public price: number, public timeToLeft: number, public author: string) {
   }
 }
+export class MyOfferView {
+
+  constructor(public id:string,public price: number, public timeToLeft: number, public author: boolean) {
+  }
+}
 import * as moment  from "moment";
 export class MyOfferFromTimeStamp {
   static transform(myOffer) {

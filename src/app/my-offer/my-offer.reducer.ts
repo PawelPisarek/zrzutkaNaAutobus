@@ -3,6 +3,7 @@ import {MyOfferActions} from "./my-offer.actions";
 import {MyOfferState} from "../app-state";
 import {MyOffer, MyOfferWithMe, Eager} from "./my-offer";
 import {EMPTY_ARRAY} from "../shared/data.service";
+import {DelayedTransportActions} from "../delayed-transport/delayed-transport.actions";
 const minMax = (action, maxMin) => {
   if ((<MyOffer[]>action.payload.list).length > 0) {
     return (<MyOffer[]>action.payload.list).reduce((prev, current) => {
@@ -19,13 +20,13 @@ const minMax = (action, maxMin) => {
   }
 };
 export function myOfferReducer(state: MyOfferState = {
-  list: [],
-  form: {},
-  error: "",
-  id: "",
-  eager: {},
-  updateForm: {}
-}, action: IPayloadAction) {
+                                 list: [],
+                                 form: {},
+                                 error: "",
+                                 id: "",
+                                 eager: {},
+                                 updateForm: {}
+                               }, action: IPayloadAction) {
   switch (action.type) {
     case MyOfferActions.LOAD_SUCCEEDED: {
       let updateForm: MyOffer = (<MyOffer[]>action.payload.list).filter((myOffer) => {
@@ -48,6 +49,11 @@ export function myOfferReducer(state: MyOfferState = {
       return Object.assign({}, state, {
         id: action.payload
       });
+    }
+    case DelayedTransportActions.LOAD_SUCCEEDED_DETAIL: {
+      return Object.assign({}, state, {
+        transportDetail: action.payload
+      })
     }
     case MyOfferActions.FORM_DATA: {
       return Object.assign({}, state, {
