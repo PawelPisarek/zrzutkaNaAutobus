@@ -1,11 +1,16 @@
 export class MyOffer {
 
-  constructor(public price: number, public timeToLeft: number, public author: string) {
+  constructor(public price: number, public timeToLeft: number, public author: any) {
   }
 }
 export class MyOfferView {
 
-  constructor(public id:string,public price: number, public timeToLeft: number, public author: boolean) {
+  constructor(public id:string,public price: number, public timeToLeft: number, public author: any) {
+  }
+}
+export class MyOfferViewApi {
+
+  constructor(public id:string,public price: number, public timeToLeft: number, public author: any) {
   }
 }
 import * as moment  from "moment";

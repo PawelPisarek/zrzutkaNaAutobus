@@ -10,3 +10,4 @@ export const PROPERTY_BINDING = (ngRedux,property, secondProperty, thirdProperty
 };
 export const OLD_URL = 'http://localhost:3000';
 export const APP_URL = 'http://localhost:8080';
+export const USER_EMAIL = 'email';

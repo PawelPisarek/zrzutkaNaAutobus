@@ -15,11 +15,12 @@ import {MyOfferActions} from "./my-offer.actions";
 
 
 import {AppState} from "../app-state"
+import {DelayedTransportActions} from "../delayed-transport/delayed-transport.actions";
 @Injectable()
 export class MyOfferEpics {
   epics: Epic<Action>[];
 
-  constructor(private service: MyOfferService, private ngRedux: NgRedux<AppState>, private appActions: AppActions,
+  constructor(private service: MyOfferService, private ngRedux: NgRedux<AppState>,private de:DelayedTransportActions, private appActions: AppActions,
               private actions: MyOfferActions) {
     this.epics = [this.loadMyOffer, this.postMyOffer];
   }
@@ -35,7 +36,7 @@ export class MyOfferEpics {
     .switchMap(a => this.service.postData(this.ngRedux.getState().myOffer.form, this.ngRedux.getState().myOffer.id))
     .map(data => this.actions.loadSucceeded(data))
     .switchMap(data => {
-      this.ngRedux.dispatch(this.appActions.loadMyOffer());
+      this.ngRedux.dispatch(this.de.loadDelayedTransportDetail());
       return [];
     })
     .catch(err => of(this.actions.loadFailed(err)))

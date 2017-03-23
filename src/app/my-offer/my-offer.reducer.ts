@@ -4,9 +4,9 @@ import {MyOfferState} from "../app-state";
 import {MyOffer, MyOfferWithMe, Eager} from "./my-offer";
 import {EMPTY_ARRAY} from "../shared/data.service";
 import {DelayedTransportActions} from "../delayed-transport/delayed-transport.actions";
-const minMax = (action, maxMin) => {
-  if ((<MyOffer[]>action.payload.list).length > 0) {
-    return (<MyOffer[]>action.payload.list).reduce((prev, current) => {
+export const minMax = (action, maxMin) => {
+  if ((<MyOffer[]>action.payload.myOffers).length > 0) {
+    return (<MyOffer[]>action.payload.myOffers).reduce((prev, current) => {
       if ("max" == maxMin) {
         return (prev.price > current.price) ? prev : current
       }

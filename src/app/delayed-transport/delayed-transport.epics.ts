@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 
 import {DelayedTransportActions} from "./delayed-transport.actions";
 import {DelayedTransportService} from "./delayed-transport.service";
+import {USER_EMAIL} from "../shared/data.service";
 
 @Injectable()
 export class DelayedTransportEpics {
@@ -29,7 +30,7 @@ export class DelayedTransportEpics {
 
   loadDelayedTransportDetail = action$ => action$
     .ofType(DelayedTransportActions.LOAD_DATA_DELAYED_TRANSPORT_DETAIL)
-    .switchMap(a => this.service.getDetail(this.ngRedux.getState().myOffer.id))
+    .switchMap(a => this.service.getDetail(this.ngRedux.getState().myOffer.id, sessionStorage.getItem(USER_EMAIL)))
     .map(data => this.actions.loadDelayedTransportDetailSucceeded(data))
     .catch(err => of(this.actions.loadFailed(err)));
 

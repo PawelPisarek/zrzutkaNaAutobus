@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Headers, Http} from "@angular/http";
 import {LoginInterface} from "./login.interface";
-import {OLD_URL,APP_URL} from "../shared/data.service";
+import {OLD_URL, APP_URL, USER_EMAIL} from "../shared/data.service";
 import {ApiHttpService} from "../auth/api-http.service";
 
 @Injectable()
@@ -24,7 +24,9 @@ export class LoginService {
     return this.http.post(`${APP_URL}/oauth/token`, params, this.HEADER)
       .map(resp => resp.json())
       .map(resp => {
-        sessionStorage.setItem('token', resp.access_token);
+        sessionStorage.setItem('token', resp.access_token)
+        sessionStorage.setItem(USER_EMAIL, login.username);
+        return resp;
       })
   }
 }

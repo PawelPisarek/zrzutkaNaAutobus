@@ -15,6 +15,12 @@ export interface MyOfferState {
   updateForm: any,
   eager: any
 }
+export interface DelayedTransportState {
+  all: any[],
+  detail: any,
+  eager: any,
+  updateForm: any
+}
 
 export interface TransportOfferState {
   formComment;
