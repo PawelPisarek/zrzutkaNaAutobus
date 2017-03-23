@@ -9,4 +9,4 @@ export const PROPERTY_BINDING = (ngRedux,property, secondProperty, thirdProperty
   else  return ngRedux.select(selector => selector);
 };
 export const OLD_URL = 'http://localhost:3000';
-export const URL = 'http://localhost:8080';
+export const APP_URL = 'http://localhost:8080';

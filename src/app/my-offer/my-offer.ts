@@ -11,7 +11,7 @@ export class MyOfferView {
 import * as moment  from "moment";
 export class MyOfferFromTimeStamp {
   static transform(myOffer) {
-    return new MyOffer(myOffer.price, moment().add(myOffer.timeToLeft, 'minutes').unix() * 1000, myOffer.author);
+    return new MyOffer(myOffer.price, moment().add(myOffer.timeToLeft, 'minutes').unix(), myOffer.author);
   }
 }
 export class MyOfferWithMe extends MyOffer {

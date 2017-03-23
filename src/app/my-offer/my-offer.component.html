@@ -1,7 +1,8 @@
 <!--<br>price<b>timeToLeft</b>-->
-<!--<li *ngFor="let transport of myOffer$ | async; trackBy:getItemName">-->
- <!--{{transport.price}} <b>{{transport.timeToLeft}}</b>-->
-<!--</li>-->
+{{(delayedTransport$|async)?.detail?.myOffers|json}}
+<li *ngFor="let transport of (delayedTransport$|async)?.detail?.myOffers">
+ {{transport.price}} <b>{{transport.timeToLeft|fromNow}}</b>
+</li>
 <app-form></app-form>
 <p *ngIf="myOfferProperty$('myOffer','updateForm','me')|async">
   {{myOfferProperty$('myOffer','updateForm','timeToLeft')|async|fromNow}} do końca trwania twojej oferty

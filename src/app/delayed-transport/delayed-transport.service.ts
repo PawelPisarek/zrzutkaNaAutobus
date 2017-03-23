@@ -3,7 +3,7 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {DelayedTransportModule} from "./delayed-transport.module";
 import {DelayedTransport, DelayedTransportDetail} from "./delayed-transport.interface";
-import {OLD_URL, URL} from "../shared/data.service";
+import {OLD_URL, APP_URL} from "../shared/data.service";
 import {ApiHttpService} from "../auth/api-http.service";
 import {MyOffer, MyOfferView} from "../my-offer/my-offer";
 import {TransportOfferView} from "../transport-offer/transport-offer";
@@ -18,7 +18,7 @@ export class DelayedTransportService {
   private JSON_HEADER = {headers: new Headers({'Content-Type': 'application/json'})};
 
   getAll() {
-    return this.apiHttpService.get(`${URL}/api/delayed-transport`)
+    return this.apiHttpService.get(`${APP_URL}/api/delayed-transport`)
       .map(resp => resp.json())
       .map(records => {
         return records.map(
@@ -33,7 +33,7 @@ export class DelayedTransportService {
   }
 
   getDetail(id) {
-    return this.apiHttpService.get(`${URL}/api/delayed-transport/${id}`)
+    return this.apiHttpService.get(`${APP_URL}/api/delayed-transport/${id}`)
       .map(resp => resp.json())
       .map((record: DelayedTransportDetail) => {
         const myOffers = record.myOffers.map((data: MyOfferView) => {

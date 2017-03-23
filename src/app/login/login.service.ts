@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Headers, Http} from "@angular/http";
 import {LoginInterface} from "./login.interface";
-import {OLD_URL,URL} from "../shared/data.service";
+import {OLD_URL,APP_URL} from "../shared/data.service";
 import {ApiHttpService} from "../auth/api-http.service";
 
 @Injectable()
@@ -21,7 +21,7 @@ export class LoginService {
 
   getToken(login: LoginInterface) {
     let params: string = [`username=${login.username}`, `password=${login.password}`, `grant_type=password`].join('&');
-    return this.http.post(`${URL}/oauth/token`, params, this.HEADER)
+    return this.http.post(`${APP_URL}/oauth/token`, params, this.HEADER)
       .map(resp => resp.json())
       .map(resp => {
         sessionStorage.setItem('token', resp.access_token);

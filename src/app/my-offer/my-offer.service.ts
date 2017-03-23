@@ -3,8 +3,9 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {MyOffer, MyOfferFromTimeStamp} from "./my-offer";
 import {DelayedTransport} from "../delayed-transport/delayed-transport.interface";
-import {OLD_URL} from "../shared/data.service";
+import {OLD_URL,APP_URL} from "../shared/data.service";
 import * as moment  from "moment";
+import {ApiHttpService} from "../auth/api-http.service";
 
 
 // A fake API on the internets.
@@ -12,7 +13,7 @@ import * as moment  from "moment";
 
 @Injectable()
 export class MyOfferService {
-  constructor(private http: Http) {
+  constructor(private http: Http,private apiHttpService: ApiHttpService) {
   }
 
   private JSON_HEADER = {headers: new Headers({'Content-Type': 'application/json'})};
@@ -26,7 +27,7 @@ export class MyOfferService {
 
     form = MyOfferFromTimeStamp.transform(form);
     const body = JSON.stringify(form);
-    return this.http.post(`${OLD_URL}/delayed-transport/${id}/my-offer`, body, this.JSON_HEADER)
+    return this.apiHttpService.post(`${APP_URL}/api/delayed-transport/${id}/my-offer`, body)
       .map(resp => resp.json())
       .map(records => {
         return [];

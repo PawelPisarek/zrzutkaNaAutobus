@@ -6,6 +6,7 @@ import {PROPERTY_BINDING, EMPTY_ARRAY} from "../shared/data.service";
 // import * as moment form 'moment';
 import * as moment from 'moment';
 import {MyOfferWithMe} from "./my-offer";
+import {select} from "@angular-redux/store";
 @Component({
   selector: 'app-my-offer',
   templateUrl: './my-offer.component.html',
@@ -15,7 +16,9 @@ export class MyOfferComponent implements OnInit {
 
   public myOffer$;
   public myOfferProperty$;
-  public data = moment().subtract(30, 'minutes').toDate();
+  @select() readonly delayedTransport$
+  public data = moment().add(30, 'minutes').unix();
+
 
   constructor(private ngRedux: NgRedux<AppState>) {
     this.myOffer$ = ngRedux.select('myOffer')
@@ -41,6 +44,7 @@ export class MyOfferComponent implements OnInit {
       });
     });
   }
+
   ngOnInit(): void {
   }
 }

@@ -11,7 +11,7 @@ import {PreloadAllModules, RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
 import {HomeModule} from "./home/home.module";
 import {LoginModule} from "./login/login.module";
-import {ApiHttpServiceModule, ApiHttpServiceProvider} from "./auth/auth.module";
+import {ApiHttpServiceProvider} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import {ApiHttpServiceModule, ApiHttpServiceProvider} from "./auth/auth.module";
     NgReduxRouterModule,
     ReactiveFormsModule,
 
-    ApiHttpServiceModule,
+
     HomeModule,
     LoginModule
   ],
